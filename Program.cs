@@ -1,9 +1,6 @@
 ﻿int nA = Convert.ToInt32(Console.ReadLine());
-int nB = Convert.ToInt32(Console.ReadLine());
-int nC = Convert.ToInt32(Console.ReadLine());
-int max = nA;
 
-if (nB > nA) max = nB;
-if (nC > max) max = nC;
-
-Console.WriteLine(max);
+if (nA%2==0 ) 
+if (nA > 0)
+Console.Write("Четное");
+else Console.Write("Не четное");
