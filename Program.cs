@@ -1,48 +1,46 @@
-﻿// Задача 43. Напишите программу, которая найдёт точку пересечения двух прямых, заданных уравнениями y = k1 * x + b1, y = k2 * x + b2; значения b1, k1, b2 и k2 задаются пользователем.
-// b1 = 2, k1 = 5, b2 = 4, k2 = 9 -> (-0,5; 5,5)
+﻿// Задача 47: Задайте двумерный массив размером m×n, заполненный случайными вещественными числами.
+// m = 3, n = 4.
+// 0,5 7 -2 -0,2
+// 1 -3,3 8 -9,9
+// 8 7,8 -7,1 9
 
+Console.WriteLine($"Задача 47: Задайте двумерный массив размером m x n, заполненный случайными вещественными числами.");
 
-Console.WriteLine($"\nЗадача 43.  Найти точку пересечения двух прямых \n");
+Console.Write("Введите m: ");
+int m = Convert.ToInt32(Console.ReadLine());
+Console.Write("Введите n: ");
+int n = Convert.ToInt32(Console.ReadLine());
 
-double[,] coeff = new double[2, 2];
-double[] crossPoint = new double[2];
+Console.Clear();
+Console.WriteLine($"m = {m}, n = {n}.");
 
-void InputCoefficients(){
-  for (int i = 0; i < coeff.GetLength(0); i++)
+double[,] array = new double[m, n];
+
+CreateArrayDouble(array);
+
+WriteArray(array);
+
+Console.WriteLine();
+
+void CreateArrayDouble(double[,] array)
+{
+  for (int i = 0; i < m; i++)
   {
-    Console.Write($"Введите коэффициенты {i+1}-го уравнения (y = k * x + b):\n");
-    for (int j = 0; j < coeff.GetLength(1); j++)
+    for (int j = 0; j < n; j++)
     {
-      if(j==0) Console.Write($"Введите коэффициент k: ");
-      else Console.Write($"Введите коэффициент b: ");
-      coeff[i,j] = Convert.ToInt32(Console.ReadLine());
+      array[i, j] = new Random().NextDouble() * 20 - 10;
     }
   }
 }
 
-double[] Decision(double[,] coeff)
-{
-  crossPoint[0] = (coeff[1,1] - coeff[0,1]) / (coeff[0,0] - coeff[1,0]);
-  crossPoint[1] = crossPoint[0] * coeff[0,0] + coeff[0,1];
-  return crossPoint;
-}
-
-void OutputResponse(double[,] coeff)
-{
-  if (coeff[0,0] == coeff[1,0] && coeff[0,1] == coeff[1,1]) 
+void WriteArray (double[,] array){
+for (int i = 0; i < m; i++)
   {
-    Console.Write($"\nПрямые совпадают");
-  }
-  else if (coeff[0,0] == coeff[1,0] && coeff[0,1] != coeff[1,1]) 
-  {
-    Console.Write($"\nПрямые параллельны");
-  }
-  else 
-  {
-    Decision(coeff);
-    Console.Write($"\nТочка пересечения прямых: ({crossPoint[0]}, {crossPoint[1]})");
+      for (int j = 0; j < n; j++)
+      {
+        double alignNumber = Math.Round(array[i, j], 1);
+        Console.Write(alignNumber + " ");
+      }
+      Console.WriteLine();
   }
 }
-
-InputCoefficients();
-OutputResponse(coeff);
