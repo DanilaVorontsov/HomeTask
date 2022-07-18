@@ -1,32 +1,33 @@
-﻿// Задача 36: Задайте одномерный массив, заполненный случайными числами. Найдите сумму элементов, стоящих на нечётных позициях.
-// [3, 7, 23, 12] -> 19
-// [-4, -6, 89, 6] -> 0
+﻿// Задача 41. Пользователь вводит с клавиатуры M чисел. Посчитайте, сколько чисел больше 0 ввёл пользователь.
+// 0, 7, 8, -2, -2 -> 2
+// -1, -7, 567, 89, 223-> 3
 
+Console.Clear();
 
-// Console.Clear();
-Console.WriteLine($"\nЗадача 36. Сумма элементов, стоящих на нечётных позициях:\n");
-Console.Write($"Введи количество элементов массива: ");
-int numberElements = Convert.ToInt32(Console.ReadLine()); 
+Console.WriteLine($"Задача 41. Cколько чисел больше 0 ввёл пользователь \n");
+Console.Write($"Введи число М(количество чисел): ");
+int m = Convert.ToInt32(Console.ReadLine());
+int[] massiveNumbers = new int[m];
 
-int RandomNumbers(int numberElements, int min, int max)
+void InputNumbers(int m){
+for (int i = 0; i < m; i++)
   {
-  int[] randomNumbers = new int[numberElements];
-  int sumElements = 0;
-  Console.Write("Получившийся массив: ");
-
-    for (int i = 0; i <randomNumbers.Length; i++ ){
-      randomNumbers[i] = new Random().Next(min, max);
-
-      Console.Write(randomNumbers[i] + " ");
-
-      if (i % 2 != 1)
-      {
-        sumElements = sumElements + randomNumbers[i];
-      }
-    }
-  return sumElements;
+    Console.Write($"Введи {i+1} число: ");
+    massiveNumbers[i] = Convert.ToInt32(Console.ReadLine());
   }
+}
 
-int randomNumbers =  RandomNumbers(numberElements, 1, 10);
 
-Console.WriteLine($"\nСумма элементов, стоящих на нечётных позициях: {randomNumbers}");
+int Comparison(int[] massiveNumbers)
+{
+  int count = 0;
+  for (int i = 0; i < massiveNumbers.Length; i++)
+  {
+    if(massiveNumbers[i] > 0 ) count += 1; 
+  }
+  return count;
+}
+
+InputNumbers(m);
+
+Console.WriteLine($"Введено чисел больше 0: {Comparison(massiveNumbers)} ");
